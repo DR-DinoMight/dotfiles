@@ -1,0 +1,19 @@
+---
+- name: "Discord | Add APT Key"
+  ansible.builtin.apt_key:
+    url: https://dl.discordapp.net/1discord-release.asc
+    state: present
+  become: true
+
+- name: "Discord | Add APT Repo"
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64] https://dl.discordapp.net/debian/ stable main"
+    state: present
+  become: true
+
+- name: "Discord | Install Discord"
+  ansible.builtin.apt:
+    name: discord
+    state: present
+    update_cache: true
+  become: true

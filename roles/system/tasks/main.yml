@@ -2,3 +2,7 @@
 - name: Run Ubuntu Tasks
   ansible.builtin.import_tasks: ubuntu.yml
   when: ansible_os_family == 'Debian'
+
+- name: Run Ubuntu Tasks
+  ansible.builtin.import_tasks: mac.yml
+  when: ansible_os_family == 'Darwin'

@@ -40,6 +40,13 @@
 
 - name: "1Password | Install 1Password"
   ansible.builtin.apt:
+    name: 1password
+    state: present
+    update_cache: true
+  become: true
+
+- name: "1Password | Install 1Password CLI"
+  ansible.builtin.apt:
     name: 1password-cli
     state: present
     update_cache: true
