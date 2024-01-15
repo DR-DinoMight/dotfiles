@@ -1,0 +1,12 @@
+---
+
+- name: "Fonts | Clone Powerline Fonts"
+  ansible.builtin.git:
+    repo: https://github.com/powerline/fonts.git
+    dest: "{{ ansible_env.HOME }}/powerline-fonts"
+  become: true
+
+- name: "Fonts | Install Powerline Fonts"
+  ansible.builtin.shell:
+    cmd: "{{ ansible_env.HOME }}/powerline-fonts/install.sh"
+  become: true

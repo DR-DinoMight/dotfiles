@@ -1,0 +1,10 @@
+---
+- name: "Docker Desktop | Download Docker Desktop DMG"
+  ansible.builtin.get_url:
+    url: https://desktop.docker.com/mac/stable/Docker.dmg
+    dest: /tmp/Docker.dmg
+
+- name: "Docker Desktop | Mount DMG and Install"
+  ansible.builtin.shell:
+    cmd: "hdiutil attach /tmp/Docker.dmg -nobrowse -quiet && cp -R /Volumes/Docker/Docker.app /Applications && hdiutil detach /Volumes/Docker && rm /tmp/Docker.dmg"
+  become: true

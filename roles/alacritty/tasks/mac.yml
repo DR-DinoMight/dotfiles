@@ -1,18 +1,18 @@
 ---
-- name: Install Alacritty on Debian
-  ansible.builtin.package:
+- name: Install Alacritty on macOS
+  ansible.builtin.homebrew:
     name: alacritty
     state: present
-  when: ansible_os_family == 'Debian'
+  when: ansible_system == 'Darwin'
 
 - name: Ensure .config directory exists
   ansible.builtin.file:
     path: "/{{ ansible_user_dir }}/.config"
     state: directory
-  when: ansible_os_family == 'Debian'
+  when: ansible_system == 'Darwin'
 
-- name: Copy Alacritty config
+- name: Copy Alacritty config to .config directory
   ansible.builtin.copy:
     src: alacritty.yaml
     dest: "/{{ ansible_user_dir }}/.config/alacritty/alacritty.yml"
-  when: ansible_os_family == 'Debian'
+  when: ansible_system == 'Darwin'

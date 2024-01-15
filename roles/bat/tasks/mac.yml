@@ -1,0 +1,6 @@
+---
+- name: "Install bat on macOS"
+  homebrew:
+    name: bat
+    state: present
+  become: true

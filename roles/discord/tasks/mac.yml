@@ -1,0 +1,6 @@
+---
+- name: "Discord | Install Discord on macOS"
+  homebrew:
+    name: discord
+    state: present
+  become: true

@@ -6,6 +6,7 @@
   register: winget_installed
   failed_when: winget_installed is not defined
   ignore_errors: true
+  when: ansible_host_environment_is_wsl
 
 - name: Install Winget Package Manager
   ansible.builtin.shell: |
@@ -23,6 +24,7 @@
   changed_when: install_winget_result.stdout != 'False'
   args:
     executable: powershell.exe
+  when: ansible_host_environment_is_wsl
 
 - name: Install dependencies packages from winget
   ansible.builtin.shell: |
@@ -41,4 +43,4 @@
   register: winget_install_result
   changed_when: winget_install_result.stdout != 'False'
   loop: "{{ winget_packages }}"
-  when: winget_packages is defined
+  when: winget_packages is defined && ansible_host_environment_is_wsl
