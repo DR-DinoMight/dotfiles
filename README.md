@@ -1,12 +1,12 @@
 
-![dotfiles-logo](https://github.com/TechDufus/dotfiles/assets/46715299/6c1d626d-28d2-41e3-bde5-981d9bf93462)
+![dotfiles-logo](https://github.com/DR-DinoMight/dotfiles/assets/46715299/6c1d626d-28d2-41e3-bde5-981d9bf93462)
 ---
-Fully automated development environment for [TechDufus](https://www.twitch.tv/TechDufus) on Twitch.
+Fully automated development environment for [DR-DinoMight](https://www.twitch.tv/DR-DinoMight) on Twitch.
 
 You can watch a quick 'tour' here on YouTube:
 
 <a href="https://youtu.be/hPPIScBt4Gw">
-    <img src="https://github.com/TechDufus/dotfiles/assets/46715299/b114ea0c-b67b-437b-87d3-7c7732aeccf8" alt="Automating your Dotfiles with Ansible: A Showcase" style="width:60%;"/>
+    <img src="https://github.com/DR-DinoMight/dotfiles/assets/46715299/b114ea0c-b67b-437b-87d3-7c7732aeccf8" alt="Automating your Dotfiles with Ansible: A Showcase" style="width:60%;"/>
 </a>
 
 ## Goals
@@ -116,7 +116,7 @@ system_host:
 
 ### Examples
 
-Below includes minimal and advanced configuration examples. If you would like to see a more real world example take a look at [blackglasses public configuration](https://github.com/TechDufus/dotfiles-erikreinert) repository.
+Below includes minimal and advanced configuration examples. If you would like to see a more real world example take a look at [blackglasses public configuration](https://github.com/DR-DinoMight/dotfiles-erikreinert) repository.
 
 #### Minimal
 
@@ -187,12 +187,12 @@ This shell script is also used to initialize your environment after installing `
 > NOTE: You must follow required steps before running this command or things may become unusable until fixed.
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/TechDufus/dotfiles/main/bin/dotfiles)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/DR-DinoMight/dotfiles/main/bin/dotfiles)"
 ```
 
 If you want to run only a specific role, you can specify the following bash command:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/TechDufus/dotfiles/main/bin/dotfiles | bash -s -- --tags comma,seperated,tags
+curl -fsSL https://raw.githubusercontent.com/DR-DinoMight/dotfiles/main/bin/dotfiles | bash -s -- --tags comma,seperated,tags
 ```
 
 ### Update
