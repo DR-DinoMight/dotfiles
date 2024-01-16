@@ -7,6 +7,7 @@
   ansible.builtin.package:
     name: alacritty
     state: present
+  become: true
   when: ansible_os_family == 'Debian'
 
 - name: Ensure .config directory exists
