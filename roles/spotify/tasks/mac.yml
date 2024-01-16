@@ -1,0 +1,6 @@
+---
+- name: "Spotify | install"
+  homebrew:
+    name: spotify
+    state: present
+  become: true
