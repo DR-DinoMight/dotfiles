@@ -1,0 +1,8 @@
+---
+- name: "Install bun on Ubuntu and macOS"
+  ansible.builtin.shell:
+    cmd: "curl -fsSL https://bun.sh/install | bash"
+  become: true
+  when:
+    - ansible_system == 'Darwin'    # Check if the system is macOS
+    - ansible_os_family == 'Debian'  # Check if the system is Ubuntu
