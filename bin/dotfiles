@@ -1,15 +1,16 @@
 #!/bin/bash
 
 #emoji codes
-CHECK_MARK="${GREEN}\xE2\x9C\x94${NC}"
-X_MARK="${RED}\xE2\x9C\x96${NC}"
-PIN="${RED}\xF0\x9F\x93\x8C${NC}"
-CLOCK="${GREEN}\xE2\x8C\x9B${NC}"
-ARROW="${SEA}\xE2\x96\xB6${NC}"
-BOOK="${RED}\xF0\x9F\x93\x8B${NC}"
-HOT="${ORANGE}\xF0\x9F\x94\xA5${NC}"
-WARNING="${RED}\xF0\x9F\x9A\xA8${NC}"
-RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
+CHECK_MARK="\033[00;32m\xE2\x9C\x94\033[0m"
+X_MARK="\033[00;31m\xE2\x9C\x96\033[0m"
+PIN="\033[00;31m\xF0\x9F\x93\x8C\033[0m"
+CLOCK="\033[00;32m\xE2\x8C\x9B\033[0m"
+ARROW="\033[00;36m\xE2\x96\xB6\033[0m"
+BOOK="\033[00;31m\xF0\x9F\x93\x8B\033[0m"
+HOT="\033[00;33m\xF0\x9F\x94\xA5\033[0m"
+WARNING="\033[00;31m\xF0\x9F\x9A\xA8\033[0m"
+RIGHT_ANGLE="\033[00;32m\xE2\x88\x9F\033[0m"
+
 # color codes
 RESTORE='\033[0m'
 NC='\033[0m'
@@ -20,7 +21,7 @@ YELLOW='\033[00;33m'
 BLUE='\033[00;34m'
 PURPLE='\033[00;35m'
 CYAN='\033[00;36m'
-SEA="\\033[38;5;49m"
+SEA="\033[38;5;49m"
 LIGHTGRAY='\033[00;37m'
 LBLACK='\033[01;30m'
 LRED='\033[01;31m'
@@ -34,46 +35,35 @@ OVERWRITE='\e[1A\e[K'
 
 DOTFILES_LOG="$HOME/.dotfiles.log"
 
-
 # _header colorize the given argument with spacing
 function _task {
-    # if _task is called while a task was set, complete the previous
     if [[ $TASK != "" ]]; then
         printf "${OVERWRITE}${LGREEN} [✓]  ${LGREEN}${TASK}\n"
     fi
-    # set new task title and print
     TASK=$1
     printf "${LBLACK} [ ]  ${TASK} \n${LRED}"
 }
 
 # _cmd performs commands with error checking
 function _cmd {
-    #create log if it doesn't exist
     if ! [[ -f $DOTFILES_LOG ]]; then
         touch $DOTFILES_LOG
     fi
-    # empty conduro.log
     > $DOTFILES_LOG
-    # hide stdout, on error we print and exit
     if eval "$1" 1> /dev/null 2> $DOTFILES_LOG; then
-        return 0 # success
+        return 0
     fi
-    # read error from log and add spacing
     printf "${OVERWRITE}${LRED} [X]  ${TASK}${LRED}\n"
     while read line; do
         printf "      ${line}\n"
     done < $DOTFILES_LOG
     printf "\n"
-    # remove log file
     rm $DOTFILES_LOG
-    # exit installation
     exit 1
 }
 
-
 set -e
 
-# Paths
 CONFIG_DIR="$HOME/.config/dotfiles"
 VAULT_SECRET="$HOME/.ansible-vault/vault.secret"
 DOTFILES_DIR="$HOME/.dotfiles"
@@ -81,9 +71,11 @@ SSH_DIR="$HOME/.ssh"
 IS_FIRST_RUN="$HOME/.dotfiles_run"
 
 # Install Ansible
-# check lsb_release -si
-if ! dpkg -s ansible >/dev/null 2>&1; then
+if ! command -v ansible &>/dev/null; then
     _task "Installing Ansible"
+    if [[ "$(uname)" == "Darwin" ]]; then
+        _cmd "brew install ansible"
+    elif [[ "$(uname)" == "Linux" ]]; then
         _cmd "sudo apt-get update"
         _cmd "sudo apt-get install -y software-properties-common"
         _cmd "sudo apt-add-repository -y ppa:ansible/ansible"
@@ -91,45 +83,55 @@ if ! dpkg -s ansible >/dev/null 2>&1; then
         _cmd "sudo apt-get install -y ansible"
         _cmd "sudo apt-get install python3-argcomplete"
         _cmd "sudo activate-global-python-argcomplete3"
+    fi
 fi
 
 # Check if python3 and pip is installed
-if ! dpkg -s python3 >/dev/null 2>&1; then
+if ! command -v python3 &>/dev/null; then
     _task "Installing Python3"
+    if [[ "$(uname)" == "Darwin" ]]; then
+        _cmd "brew install python"
+    elif [[ "$(uname)" == "Linux" ]]; then
         _cmd "sudo apt-get install -y python3"
-fi
-if ! dpkg -s python3-pip >/dev/null 2>&1; then
-    _task "Installing Python3 Pip"
-        _cmd "sudo apt-get install -y python3-pip"
-fi
-# Check if pip module watchdog is installed
-if ! pip3 list | grep watchdog >/dev/null 2>&1; then
-    _task "Installing Python3 Watchdog"
-        _cmd "pip3 install watchdog"
+    fi
 fi
 
+if ! command -v pip3 &>/dev/null; then
+    _task "Installing Python3 Pip"
+    if [[ "$(uname)" == "Darwin" ]]; then
+        _cmd "brew install python"
+    elif [[ "$(uname)" == "Linux" ]]; then
+        _cmd "sudo apt-get install -y python3-pip"
+    fi
+fi
+
+# Check if pip module watchdog is installed
+if ! pip3 list | grep watchdog &>/dev/null; then
+    _task "Installing Python3 Watchdog"
+    _cmd "pip3 install watchdog"
+fi
 
 # Generate SSH keys
 if ! [[ -f "$SSH_DIR/authorized_keys" ]]; then
     _task "Generating SSH keys"
-        _cmd "mkdir -p $SSH_DIR"
-        _cmd "chmod 700 $SSH_DIR"
-        _cmd "ssh-keygen -b 4096 -t rsa -f $SSH_DIR/id_rsa -N '' -C $USER@$HOSTNAME"
-        _cmd "cat $SSH_DIR/id_rsa.pub >> $SSH_DIR/authorized_keys"
+    _cmd "mkdir -p $SSH_DIR"
+    _cmd "chmod 700 $SSH_DIR"
+    _cmd "ssh-keygen -b 4096 -t rsa -f $SSH_DIR/id_rsa -N '' -C $USER@$HOSTNAME"
+    _cmd "cat $SSH_DIR/id_rsa.pub >> $SSH_DIR/authorized_keys"
 fi
 
 # Clone repository
 if ! [[ -d "$DOTFILES_DIR" ]]; then
     _task "Cloning repository"
-        _cmd "git clone --quiet https://github.com/DR-DinoMight/dotfiles.git $DOTFILES_DIR"
+    _cmd "git clone --quiet https://github.com/DR-DinoMight/dotfiles.git $DOTFILES_DIR"
 else
     _task "Updating repository"
-        _cmd "git -C $DOTFILES_DIR pull --quiet"
+    _cmd "git -C $DOTFILES_DIR pull --quiet"
 fi
 
 pushd "$DOTFILES_DIR" 2>&1 > /dev/null
 _task "Updating Galaxy"
-    _cmd "ansible-galaxy install -r requirements.yml"
+_cmd "ansible-galaxy install -r requirements.yml"
 
 _task "Running playbook"
 if [[ -f $VAULT_SECRET ]]; then
@@ -145,5 +147,3 @@ if ! [[ -f "$IS_FIRST_RUN" ]]; then
     echo -e "${ARROW} ${CYAN}Please reboot your computer to complete the setup.${NC}"
     touch "$IS_FIRST_RUN"
 fi
-
-# vi:ft=sh:
