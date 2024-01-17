@@ -1,4 +1,46 @@
 ---
-- name: Run Ubuntu Tasks
-  ansible.builtin.import_tasks: ubuntu.yml
-  when: ansible_os_family == 'Debian'
+- name: "Git | Install"
+  ansible.builtin.apt:
+    name:
+      - git
+    state: latest
+  become: true
+
+- name: "Git | Set diff.colorMoved"
+  community.general.git_config:
+    name: diff.colorMoved
+    scope: global
+    value: zebra
+
+- name: "Git | Set fetch.prune"
+  community.general.git_config:
+    name: fetch.prune
+    scope: global
+    value: true
+
+# git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+# - name: "Git | Set URL to SSH"
+#   community.general.git_config:
+#     name: URL
+#     scope: global
+#     value: "git@github.com"
+
+- name: "Git | Set init.defaultBranch"
+  community.general.git_config:
+    name: init.defaultBranch
+    scope: global
+    value: main
+
+
+- name: "Git | Set user.email"
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ git_user_email }}"
+  no_log: true
+
+- name: "Git | Set user.name"
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ git_user_name }}"
