@@ -1,7 +1,7 @@
 ---
 - name: Run Ubuntu Tasks
   ansible.builtin.import_tasks: ubuntu.yml
-  when: ansible_os_family == 'Debian'
+  when: ansible_os_family == 'Debian' and !ansible_host_environment_is_wsl
 
 - name: Run Mac Tasks
   ansible.builtin.import_tasks: mac.yml
