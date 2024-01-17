@@ -1,5 +1,6 @@
 default_roles:
   - system
+  - zsh
   - 1password
   - alacritty
   - asciiquarium
@@ -17,7 +18,7 @@ default_roles:
   - lua
   # - nala
   - neovim
-  - npm
+  # - npm
   # - pwsh
   - python
   - ruby
@@ -29,7 +30,6 @@ default_roles:
   - zellij
   - spotify
   - zoxide
-  - zsh
 
 git_user_name: "Matt Deloughry"
 git_user_email: !vault |
