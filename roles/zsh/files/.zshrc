@@ -128,3 +128,4 @@ alias dotfiles="$HOME/.dotfiles/bin/dotfiles"
 alias bc="better-commits"
 eval "$(atuin init zsh)"
 eval "$(op completion zsh)"; compdef _op op
+

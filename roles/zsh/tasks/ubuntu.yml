@@ -1,0 +1,52 @@
+---
+- name: "Bash | Copy .zshrc"
+  ansible.builtin.copy:
+    src: ".zshrc"
+    dest: "{{ ansible_user_dir }}/.zshrc"
+    mode: "0644"
+
+- name: "ZSH | Copy Private Files"
+  ansible.builtin.lineinfile:
+    name: "~/.openai.apikey"
+    line: "{{ OPENAI_KEY }}"
+    create: true
+    mode: "0600"
+    state: present
+
+- name: "Install Zsh and Oh-My-Zsh on Ubuntu"
+  ansible.builtin.package:
+    name: zsh
+    state: present
+  become: true
+
+- name: "Set Zsh as default shell on Ubuntu"
+  ansible.builtin.command:
+    cmd: "chsh -s /usr/bin/zsh {{ host_user }}"
+  become: true
+
+
+- name: "zsh | Copy Private Files openai.apikey"
+  ansible.builtin.lineinfile:
+    name: "~/.openai.apikey"
+    line: "{{ OPENAI_KEY }}"
+    create: true
+    mode: "0600"
+    state: present
+
+- name: "zsh | Copy Private Files zshrc"
+  ansible.builtin.lineinfile:
+    name: "~/.zshrc"
+    line: "export OPENAI_API_KEY='{{ OPENAI_API_KEY }}'"
+    create: true
+    mode: "0600"
+    state: present
+
+
+- name: "Bash | Add code PATH"
+  ansible.builtin.lineinfile:
+    name: "~/.zshrc"
+    line: 'export PATH=$PATH:"/mnt/c/Users/{{ wsl_host_user }}/AppData/Local/Programs/Microsoft VS Code/bin"'
+    create: true
+    mode: "0600"
+    state: present
+  when: windows_user
