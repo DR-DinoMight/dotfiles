@@ -125,5 +125,6 @@ eval "$(zellij setup --generate-auto-start zsh)"
 
 alias ct='bat --paging=never'
 alias dotfiles="$HOME/.dotfiles/bin/dotfiles"
+alias bc="better-commits"
 eval "$(atuin init zsh)"
 eval "$(op completion zsh)"; compdef _op op
