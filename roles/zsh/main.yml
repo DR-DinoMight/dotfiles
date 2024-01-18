@@ -11,20 +11,18 @@
   when: ansible_os_family == 'Debian'
   become: true
 
-- name: "Copy .zshrc"
+- name: "Bash | Copy .zshrc"
   ansible.builtin.copy:
-    src: path/to/your/.zshrc
-    dest: "{{ ansible_env.HOME }}/.zshrc"
-  become: true
+    src: ".zshrc"
+    dest: "{{ ansible_user_dir }}/.zshrc"
+    mode: "0644"
 
 - name: "Set Zsh as default shell on macOS"
   ansible.builtin.command:
     cmd: "chsh -s /usr/local/bin/zsh {{ ansible_user }}"
   when: ansible_system == 'Darwin'
-  become: true
 
 - name: "Set Zsh as default shell on Ubuntu"
   ansible.builtin.command:
     cmd: "chsh -s /usr/bin/zsh {{ ansible_user }}"
   when: ansible_os_family == 'Debian'
-  become: true
