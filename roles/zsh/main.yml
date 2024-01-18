@@ -1,3 +1,5 @@
+---
+
 - name: "Install Zsh and Oh-My-Zsh on macOS"
   homebrew:
     name: zsh
