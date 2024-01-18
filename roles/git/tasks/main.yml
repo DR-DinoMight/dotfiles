@@ -12,12 +12,6 @@
     scope: global
     value: zebra
 
-- name: "Git | Set fetch.prune"
-  community.general.git_config:
-    name: fetch.prune
-    scope: global
-    value: true
-
 # git config --global --add url."git@github.com:".insteadOf "https://github.com/"
 # - name: "Git | Set URL to SSH"
 #   community.general.git_config:
