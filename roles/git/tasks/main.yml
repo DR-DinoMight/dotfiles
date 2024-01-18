@@ -51,7 +51,6 @@
   args:
     creates: "{{ ansible_env.HOME }}/.npm-global/bin/better-commits"
   become: true
-  when: npm_check.rc == 0  # Only run if npm is installed
 
 - name: "Add better-commits alias to zshrc or bashrc"
   ansible.builtin.lineinfile:
