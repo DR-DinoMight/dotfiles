@@ -1,9 +1,6 @@
 live_config_reload = true
-dynamic_title = true
-history = 10000
-
-multiplier = 3
-opacity = 0.95
+[scrolling]
+history = 100000
 
 [font.normal]
 family = "BerkeleyMono Nerd Font"
@@ -33,7 +30,7 @@ modifiers = "Command"
 [colors.normal]
 black = "0x282c34"
 blue = "0x51afef"
-cyan = "0x46d9ff"
+cyan = "0x46d9ff"S
 green = "0x98be65"
 magenta = "0xc678dd"
 red = "0xff6c6b"
