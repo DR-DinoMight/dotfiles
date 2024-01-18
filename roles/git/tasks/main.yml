@@ -44,9 +44,7 @@
     name: user.name
     scope: global
     value: "{{ git_user_name }}"
-    
+
 - name: "GIT | Install better-commits"
   ansible.builtin.shell:
     cmd: "npm install -g better-commits"
-  args:
-    creates: "{{ ansible_env.HOME }}/.npm-global/bin/better-commits"

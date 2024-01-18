@@ -6,6 +6,7 @@ default_roles:
   - asciiquarium
   # - npm
   # - bash
+  - atuin
   - bat
   - bun
   - docker

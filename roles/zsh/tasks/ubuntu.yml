@@ -19,6 +19,16 @@
     state: present
   become: true
 
+- name: Check if path exists
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.oh-my-zsh"
+  register: omzsh_path_check
+
+- name: Install Oh-my-zsh
+  ansible.builtin.shell:
+    cmd: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  when: not omzsh_path_check
+
 - name: "Set Zsh as default shell on Ubuntu"
   ansible.builtin.command:
     cmd: "chsh -s /usr/bin/zsh {{ host_user }}"

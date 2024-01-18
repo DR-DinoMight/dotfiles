@@ -1,0 +1,20 @@
+---
+- name: Check if path exists
+  ansible.builtin.stat:
+    path: "/usr/bin/atuin"
+  register: atuin_path_check
+
+- name: Install Atuin using install.sh script
+  ansible.builtin.shell:
+    cmd: 'bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh)'
+  when: not atuin_path_check
+
+- name: Atuin | Copy Config
+  ansible.builtin.file:
+    path: "/{{ ansible_user_dir }}/.config/atuin"
+    state: directory
+
+- name: Copy Atuin config
+  ansible.builtin.copy:
+    src: config.toml
+    dest: "/{{ ansible_user_dir }}/.config/atuin/config.toml"
