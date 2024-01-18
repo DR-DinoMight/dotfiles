@@ -50,17 +50,3 @@
     cmd: "npm install -g better-commits"
   args:
     creates: "{{ ansible_env.HOME }}/.npm-global/bin/better-commits"
-
-- name: "Add better-commits alias to zshrc or bashrc"
-  ansible.builtin.lineinfile:
-    dest: "{{ ansible_env.HOME }}/.zshrc"
-    line: 'alias bc=better-commits'
-    insertafter: '^# User configuration'
-  when: "'zsh' in ansible_play_hosts[0] and not ansible_env.HOME == '/root' and npm_check.rc == 0"  # Add to zshrc only if user is not root and npm is installed
-
-- name: "Add better-commits alias to bashrc"
-  ansible.builtin.lineinfile:
-    dest: "{{ ansible_env.HOME }}/.bashrc"
-    line: 'alias bc=better-commits'
-    insertafter: '^# User configuration'
-  when: "'bash' in ansible_play_hosts[0] and not ansible_env.HOME == '/root' and npm_check.rc == 0"  # Add to bashrc only if user is not root and npm is installed
