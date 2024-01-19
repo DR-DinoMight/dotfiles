@@ -4,10 +4,20 @@
     path: "/usr/bin/atuin"
   register: atuin_path_check
 
+- name: Download Atuin
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh
+    dest: /tmp/install.sh
+
 - name: Install Atuin using install.sh script
   ansible.builtin.shell:
-    cmd: 'bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh)'
+    cmd: '/tmp/install.sh'
   when: not atuin_path_check.stat.exists
+
+- name: Atuin Remove the install.sh
+  file:
+    path: /tmp/install.sh
+    state: absent
 
 - name: Atuin | Copy Config
   ansible.builtin.file:

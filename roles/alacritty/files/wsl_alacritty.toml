@@ -1,5 +1,5 @@
 live_config_reload = true
-shell.program =  "wsl -d ubuntu"
+shell =  "wsl -d ubuntu --cd ~"
 
 [scrolling]
 history = 100000
@@ -22,12 +22,6 @@ style = "Bold Italic"
 
 [selection]
 save_to_clipboard = true
-
-[mouse.hints]
-modifiers = "Command"
-
-  [mouse.hints.launcher]
-  program = "open"
 
 [colors.normal]
 black = "0x282c34"

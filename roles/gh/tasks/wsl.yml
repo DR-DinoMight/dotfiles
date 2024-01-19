@@ -1,0 +1,10 @@
+---
+- name: Install GitHub CLI tool
+  ansible.builtin.include_role:
+    name: winget
+  vars:
+    winget_packages:
+    - GitHub.cli
+
+# - name: Authenticate with GitHub using SSH key
+#   command: gh auth login --hostname github.com --method ssh

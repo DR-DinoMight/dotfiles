@@ -42,3 +42,4 @@
 - name: "GIT | Install better-commits"
   ansible.builtin.shell:
     cmd: "npm install -g better-commits"
+
