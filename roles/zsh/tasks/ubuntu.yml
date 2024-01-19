@@ -27,7 +27,7 @@
 - name: Install Oh-my-zsh
   ansible.builtin.shell:
     cmd: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
-  when: not omzsh_path_check
+  when: not omzsh_path_check.stat.exists
 
 - name: "Set Zsh as default shell on Ubuntu"
   ansible.builtin.command:

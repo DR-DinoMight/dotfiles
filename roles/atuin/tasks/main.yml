@@ -7,7 +7,7 @@
 - name: Install Atuin using install.sh script
   ansible.builtin.shell:
     cmd: 'bash <(curl https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh)'
-  when: not atuin_path_check
+  when: not atuin_path_check.stat.exists
 
 - name: Atuin | Copy Config
   ansible.builtin.file:
