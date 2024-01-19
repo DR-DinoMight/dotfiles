@@ -1,8 +1,4 @@
 ---
-- name: Install Alacritty Repo
-  ansible.builtin.apt_repository:
-    repo: 'ppa:aslatter/ppa'
-    state: present
 - name: Install Alacritty on Debian
   ansible.builtin.package:
     name: alacritty
