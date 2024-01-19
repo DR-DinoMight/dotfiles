@@ -135,8 +135,10 @@ _cmd "ansible-galaxy install -r requirements.yml"
 
 _task "Running playbook"
 if [[ -f $VAULT_SECRET ]]; then
+    _task "Found Vault - $VALUT_SECRET"
     ansible-playbook --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
 else
+    _task "No Valut  - $VALUT_SECRET"
     ansible-playbook "$DOTFILES_DIR/main.yml" "$@"
 fi
 
