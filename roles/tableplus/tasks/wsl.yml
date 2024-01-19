@@ -1,0 +1,7 @@
+---
+  - name: "table plus | install"
+    ansible.builtin.include_role:
+      name: winget
+    vars:
+      winget_packages:
+      - TablePlus.TablePlus

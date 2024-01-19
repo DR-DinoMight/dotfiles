@@ -1,5 +1,5 @@
 ---
-- name: "tableplus | install"
+- name: "Ray| install"
   ansible.builtin.homebrew:
-    name: tableplus
+    name: ray
   when: "ansible_system == 'Darwin'"

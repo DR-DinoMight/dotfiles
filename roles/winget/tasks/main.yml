@@ -43,4 +43,6 @@
   register: winget_install_result
   changed_when: winget_install_result.stdout != 'False'
   loop: "{{ winget_packages }}"
-  when: winget_packages is defined && ansible_host_environment_is_wsl
+  when:
+    - winget_packages is defined
+    - ansible_host_environment_is_wsl

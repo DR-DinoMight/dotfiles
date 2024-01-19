@@ -1,0 +1,4 @@
+---
+- name: Run Mac Tasks
+  ansible.builtin.import_tasks: mac.yml
+  when: ansible_system == 'Darwin'

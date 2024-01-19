@@ -6,6 +6,7 @@ default_roles:
   - asciiquarium
   # - npm
   # - bash
+  - pwsh
   - atuin
   - bat
   - bun
@@ -20,7 +21,6 @@ default_roles:
   - lua
   # - nala
   - neovim
-  # - pwsh
   - python
   - ruby
   - rust
@@ -31,6 +31,12 @@ default_roles:
   - zellij
   - spotify
   - zoxide
+  # - winget
+  - helo
+  - vscode
+  - tableplus
+  - heidisql
+  - ray
 
 git_user_name: "Matt Deloughry"
 git_user_email: !vault |
