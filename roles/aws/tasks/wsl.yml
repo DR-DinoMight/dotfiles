@@ -1,0 +1,7 @@
+---
+  - name: "AWS | install"
+    ansible.builtin.include_role:
+      name: winget
+    vars:
+      winget_packages:
+      - Amazon.AWSCL

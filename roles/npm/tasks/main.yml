@@ -3,8 +3,7 @@
   ansible.builtin.shell:
     cmd: "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash"
   args:
-    creates: "{{ ansible_env.HOME }}/.nvm"
-  become: true
+    creates: "{{ ansible_user_dir }}/.nvm"
 
 - name: "NPM | Install Latest LTS NodeJS version"
   ansible.builtin.shell:
@@ -13,7 +12,6 @@
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
       [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
       nvm install --lts --latest-npm
-  become: true
 
 - name: "NPM | Set Default LTS NodeJS version"
   ansible.builtin.shell:
@@ -22,4 +20,3 @@
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
       [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
       nvm alias default lts/*
-  become: true

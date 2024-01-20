@@ -1,0 +1,4 @@
+---
+- name: "Railway | install"
+  community.general.npm:
+    name: "@railway/cli"

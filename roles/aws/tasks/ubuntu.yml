@@ -1,0 +1,6 @@
+---
+- name: Install AWS CLI on Debian/Ubuntu (including WSL)
+  ansible.builtin.apt:
+    name: awscli
+    update_cache: yes
+    state: present

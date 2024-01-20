@@ -1,0 +1,5 @@
+---
+- name: "Ray case | install"
+  community.general.homebrew_cask:
+    name: raycast
+  when: "ansible_system == 'Darwin'"

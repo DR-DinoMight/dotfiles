@@ -1,0 +1,4 @@
+---
+- name: Install AWS CLI on macOS
+  ansible.builtin.homebrew:
+    name: awscli

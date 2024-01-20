@@ -1,0 +1,7 @@
+---
+  - name: "Bruno plus | install"
+    ansible.builtin.include_role:
+      name: winget
+    vars:
+      winget_packages:
+      - Bruno.Bruno

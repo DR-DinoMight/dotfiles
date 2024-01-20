@@ -1,7 +1,6 @@
-
 ![dotfiles-logo](https://github.com/DR-DinoMight/dotfiles/assets/46715299/6c1d626d-28d2-41e3-bde5-981d9bf93462)
 ---
-Fully automated development environment for [DR-DinoMight](https://www.twitch.tv/DR-DinoMight) on Twitch.
+Fully automated development environment forked from [https://github.com/TechDufus/dotfiles](The Brilliant TechDufus)
 
 You can watch a quick 'tour' here on YouTube:
 

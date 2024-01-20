@@ -1,0 +1,5 @@
+---
+- name: "Bruno | install"
+  community.general.homebrew_cask:
+    name: bruno
+  when: "ansible_system == 'Darwin'"

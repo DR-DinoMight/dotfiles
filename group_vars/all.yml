@@ -4,7 +4,8 @@ default_roles:
   - 1password
   - alacritty
   - asciiquarium
-  # - npm
+  - npm
+  - aws
   # - bash
   - pwsh
   - atuin
@@ -37,6 +38,11 @@ default_roles:
   - tableplus
   - heidisql
   - ray
+  - bruno
+  - vercel
+  - netlify
+  - railway
+  - raycast
 
 git_user_name: "Matt Deloughry"
 git_user_email: !vault |
