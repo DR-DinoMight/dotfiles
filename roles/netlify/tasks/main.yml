@@ -2,3 +2,5 @@
 - name: "Netlify | install"
   community.general.npm:
     name: "netlify-cli"
+    global: true
+    state: latest

@@ -2,3 +2,5 @@
 - name: "vercel | install"
   community.general.npm:
     name: "vercel"
+    global: true
+    state: latest
