@@ -20,17 +20,12 @@ Ansible replicates what we would do to set up a development environment pretty w
 
 ### Operating System
 
-This Ansible playbook only supports `Ubuntu` distribution. This is by design to provide a consistent development experience across hosts.
+This Ansible playbook supports `Ubuntu`, `Ubuntu (WSL)`, `Windows (through Ubunut WSL)`, and `Mac (currently untested)`. This is by design to provide a consistent development experience across hosts.
 
-### System Upgrade
+### Software
 
-Verify your `Ubuntu` installation has all latest packages installed before running the playbook.
-
-```
-sudo apt-get update && sudo apt-get upgrade -y
-```
-
-> NOTE: This will take some time.
+- Ansinble of courese!
+- Currently theres a bug with NPM/NVM so NPM may be needed first.
 
 ## Setup
 
