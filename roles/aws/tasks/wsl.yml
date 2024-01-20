@@ -4,4 +4,4 @@
       name: winget
     vars:
       winget_packages:
-      - Amazon.AWSCL
+        - Amazon.AWSCLI
