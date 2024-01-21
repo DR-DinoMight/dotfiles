@@ -1,27 +1,42 @@
 ---
 
-- name: "Install Zsh and Oh-My-Zsh on Ubuntu"
+- name: "Zsh | Install Zsh and Oh-My-Zsh on Ubuntu"
   ansible.builtin.package:
     name: zsh
     state: present
   become: true
 
-- name: Check if path exists
+- name: Zsh | Check if path exists
   ansible.builtin.stat:
     path: "{{ ansible_user_dir }}/.oh-my-zsh"
   register: omzsh_path_check
 
-- name: Install Oh-my-zsh
+- name: Zsh | Install Oh-my-zsh
   ansible.builtin.shell:
     cmd: 'sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
   when: not omzsh_path_check.stat.exists
 
-- name: "Set Zsh as default shell on Ubuntu"
+- name: Zsh | Clone Autosuggestions repo
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+
+- name: Zsh | Clone syntax repo
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+
+- name: Zsh | Clone CD-LS repo
+  ansible.builtin.git:
+    repo: https://github.com/zshzoo/cd-ls
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/cd-ls"
+
+- name: "Zsh | Set Zsh as default shell on Ubuntu"
   ansible.builtin.command:
     cmd: "chsh -s /usr/bin/zsh {{ host_user }}"
   become: true
 
-- name: "Bash | Copy .zshrc"
+- name: "Zsh | Copy .zshrc"
   ansible.builtin.copy:
     src: ".zshrc"
     dest: "{{ ansible_user_dir }}/.zshrc"
@@ -45,7 +60,7 @@
     state: present
 
 
-- name: "Bash | Add code PATH"
+- name: "Zsh | Add code PATH"
   ansible.builtin.lineinfile:
     name: "~/.zshrc"
     line: 'export PATH=$PATH:"/mnt/c/Users/{{ wsl_host_user }}/AppData/Local/Programs/Microsoft VS Code/bin"'

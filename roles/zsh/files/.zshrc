@@ -7,7 +7,7 @@ zstyle ':omz:update' mode auto      # update automatically without asking
 COMPLETION_WAITING_DOTS="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-plugins=(git 1password aliases aws)
+plugins=(git 1password aliases aws zsh-autosuggestions zsh-syntax-highlighting cd-ls)
 
 source $ZSH/oh-my-zsh.sh
 
