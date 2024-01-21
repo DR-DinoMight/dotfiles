@@ -1,0 +1,10 @@
+---
+- name: Deno | Check if Deno is installed
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.deno"
+  register: deno_check
+
+- name: Deno | Install Deno
+  ansible.builtin.shell:
+    cmd: 'curl -fsSL https://deno.land/install.sh | sh'
+  when: not deno_check.stat.exists

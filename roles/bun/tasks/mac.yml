@@ -1,0 +1,9 @@
+---
+- name: Bun | Tap a Homebrew repository, state present
+  community.general.homebrew_tap:
+    name: oven-sh/bun
+
+- name: "Bun | Install bun"
+  community.general.homebrew:
+    name: bun
+    state: present

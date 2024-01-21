@@ -1,0 +1,10 @@
+---
+- name: Bun | Check if Bun is installed
+  ansible.builtin.stat:
+    path: "{{ ansible_user_dir }}/.bun/bin"
+  register: bun_check
+
+- name: "Install bun on Ubuntu and macOS"
+  ansible.builtin.shell:
+    cmd: "curl -fsSL https://bun.sh/install | bash"
+  when: not bun_check.stat.exists

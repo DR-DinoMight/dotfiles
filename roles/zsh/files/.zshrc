@@ -40,3 +40,5 @@ alias gbc="better-commits"
 eval "$(atuin init zsh)"
 eval "$(op completion zsh)"; compdef _op op
 
+export DENO_INSTALL="/home/matt/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"

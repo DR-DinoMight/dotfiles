@@ -1,0 +1,6 @@
+---
+- name: "Deno | Install Deno on macOS"
+  homebrew:
+    name: deno
+    state: present
+  become: true
