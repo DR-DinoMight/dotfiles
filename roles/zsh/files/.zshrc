@@ -19,18 +19,18 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-export PATH="$PATH:/home/matt/.local/bin"
+export PATH="$PATH:$HOME/.local/bin"
 ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/home/matt/.rd/bin:$PATH"
+export PATH="$HOME/.rd/bin:$PATH"
 ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 
 # bun completions
-[ -s "/home/matt/.bun/_bun" ] && source "/home/matt/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-export FLYCTL_INSTALL="/home/matt/.fly"
+export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 eval "$(zellij setup --generate-auto-start zsh)"
 
@@ -40,5 +40,5 @@ alias gbc="better-commits"
 eval "$(atuin init zsh)"
 eval "$(op completion zsh)"; compdef _op op
 
-export DENO_INSTALL="/home/matt/.deno"
+export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
