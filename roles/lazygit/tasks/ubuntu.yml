@@ -1,0 +1,36 @@
+---
+- name: LazyGit | Check if Lazygit is installed
+  ansible.builtin.command:
+    cmd: 'command -v lazygit'
+  register: lazygit_installed
+  ignore_errors: true
+
+- name: LazyGit | Get latest Lazygit version from GitHub
+  ansible.builtin.shell:
+    cmd: 'curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -oP ''"tag_name": "\Kv([^"]+)'''
+  register: latest_lazygit_version
+
+- name: Get installed Lazygit version
+  ansible.builtin.shell:
+    cmd: 'lazygit --version | grep -Po ''LazyGit version \K[0-9.]*'''
+  register: installed_lazygit_version
+  when: lazygit_installed.rc == 0
+
+- name: LazyGit | Download Lazygit tarball
+  ansible.builtin.get_url:
+    url: "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_{{ latest_lazygit_version.stdout | regex_replace('v', '') }}_Linux_x86_64.tar.gz"
+    dest: "/tmp/lazygit.tar.gz"
+  when: lazygit_installed.rc != 0 or (latest_lazygit_version.stdout | regex_replace('v', '')) != installed_lazygit_version.stdout
+
+- name: LazyGit | Extract Lazygit tarball
+  ansible.builtin.unarchive:
+    src: "/tmp/lazygit.tar.gz"
+    dest: "/tmp"
+    remote_src: true
+    creates: "/tmp/lazygit"
+  when: lazygit_installed.rc != 0 or (latest_lazygit_version.stdout | regex_replace('v', '')) != installed_lazygit_version.stdout
+
+- name: LazyGit | Install Lazygit
+  ansible.builtin.command:
+    cmd: "sudo install /tmp/lazygit /usr/local/bin"
+  when: lazygit_installed.rc != 0 or (latest_lazygit_version.stdout | regex_replace('v', '')) != installed_lazygit_version.stdout
