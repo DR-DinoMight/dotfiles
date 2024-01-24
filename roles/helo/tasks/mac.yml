@@ -2,5 +2,5 @@
 - name: "Helo| install"
   ansible.builtin.homebrew:
     name: helo
-    state: latest
+    state: absent
   when: "ansible_system == 'Darwin'"
