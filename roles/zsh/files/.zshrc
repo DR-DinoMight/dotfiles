@@ -42,3 +42,4 @@ eval "$(op completion zsh)"; compdef _op op
 
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+export PATH="/opt/homebrew/opt/ansible@8/bin:$PATH"
