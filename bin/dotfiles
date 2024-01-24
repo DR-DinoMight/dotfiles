@@ -108,7 +108,7 @@ fi
 # Check if pip module watchdog is installed
 if ! pip3 list | grep watchdog &>/dev/null; then
     _task "Installing Python3 Watchdog"
-    _cmd "pip3 install watchdog"
+    _cmd "python -m pip install watchdog"
 fi
 
 # Generate SSH keys
