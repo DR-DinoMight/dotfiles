@@ -1,6 +1,2 @@
 ---
-- name: "Install Homebrew on macOS"
-  ansible.builtin.shell:
-    cmd: "/bin/bash -c '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)'"
-  when: ansible_system == 'Darwin' and not ('homebrew' in lookup('pipe', 'brew list'))
-  become: true
+
