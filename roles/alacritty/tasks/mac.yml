@@ -13,6 +13,6 @@
 
 - name: Copy Alacritty config to .config directory
   ansible.builtin.copy:
-    src: alacritty.yaml
+    src: alacritty.toml
     dest: "/{{ ansible_user_dir }}/.config/alacritty/alacritty.toml"
   when: ansible_system == 'Darwin'
