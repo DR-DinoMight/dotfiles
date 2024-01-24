@@ -4,7 +4,6 @@
   ansible.builtin.package:
     name: zsh
     state: present
-  become: true
 
 - name: Zsh | Check if path exists
   ansible.builtin.stat:
