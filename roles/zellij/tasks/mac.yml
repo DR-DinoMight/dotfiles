@@ -1,15 +1,6 @@
 ---
-- name: "Zellij | install rust"
+- name: "zoxide | install"
   homebrew:
-    name: rust
+    name: zellij
+    state: absent
 
-- name: "Zellij | Clone Zellij Repo"
-  ansible.builtin.git:
-    repo: "https://github.com/zellij-org/zellij.git"
-    dest: "/{{ ansible_user_dir }}/zellij"
-  become: true
-
-- name: "Zellij | Build and Install"
-  ansible.builtin.shell:
-    cmd: "cd /{{ ansible_user_dir }}/zellij && cargo build --release && ln -s /{{ ansible_user_dir }}/zellij/target/release/zellij /usr/bin/zellij"
-  become: true
