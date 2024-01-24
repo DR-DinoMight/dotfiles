@@ -2,5 +2,6 @@
 - name: "LazyGit | install"
   ansible.builtin.homebrew:
     name: lazygit
+    state: absent
   when: "ansible_system == 'Darwin'"
 
