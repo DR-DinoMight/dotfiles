@@ -74,7 +74,7 @@ IS_FIRST_RUN="$HOME/.dotfiles_run"
 if ! command -v ansible &>/dev/null; then
     _task "Installing Ansible"
     if [[ "$(uname)" == "Darwin" ]]; then
-        _cmd "brew install ansible"
+        _cmd "brew install ansible@8"
     elif [[ "$(uname)" == "Linux" ]]; then
         _cmd "sudo apt-get update"
         _cmd "sudo apt-get install -y software-properties-common"
