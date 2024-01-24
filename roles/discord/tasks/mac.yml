@@ -2,4 +2,5 @@
 - name: "Discord | Install Discord on macOS"
   homebrew:
     name: discord
-    state: absent
+    state: latest
+  ignore_errors: True

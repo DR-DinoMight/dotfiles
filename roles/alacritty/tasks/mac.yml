@@ -2,7 +2,8 @@
 - name: Install Alacritty on macOS
   ansible.builtin.homebrew:
     name: alacritty
-    state: absent
+    state: latest
+  ignore_errors: True
   when: ansible_system == 'Darwin'
 
 - name: Ensure .config directory exists

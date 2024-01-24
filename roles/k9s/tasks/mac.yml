@@ -2,7 +2,8 @@
 - name: K9s | Install K9s on macOS
   ansible.builtin.homebrew:
     name: k9s
-    state: absent
+    state: latest
+  ignore_errors: True
   when: ansible_system == 'Darwin'
 
 - name: "k9s | Ensure k9s config directory exists"

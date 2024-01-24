@@ -2,4 +2,5 @@
 - name: "zoxide | install"
   homebrew:
     name: zoxide
-    state: absent
+    state: latest
+  ignore_errors: True

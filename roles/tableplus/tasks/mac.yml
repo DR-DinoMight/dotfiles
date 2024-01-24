@@ -2,5 +2,6 @@
 - name: "tableplus | install"
   ansible.builtin.homebrew:
     name: tableplus
-    state: absent
+    state: latest
+  ignore_errors: True
   when: "ansible_system == 'Darwin'"

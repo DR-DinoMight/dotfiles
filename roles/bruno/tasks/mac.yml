@@ -2,5 +2,6 @@
 - name: "Bruno | install"
   community.general.homebrew_cask:
     name: bruno
-    state: absent
+    state: latest
+  ignore_errors: True
   when: "ansible_system == 'Darwin'"

@@ -2,5 +2,6 @@
 - name: Install K8s on macOS
   ansible.builtin.homebrew:
     name: kubernetes-cli
-    state: absent
+    state: latest
+  ignore_errors: True
   when: ansible_system == 'Darwin'

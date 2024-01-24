@@ -2,5 +2,6 @@
 - name: "Ray| install"
   ansible.builtin.homebrew:
     name: ray
-    state: absent
+    state: latest
+  ignore_errors: True
   when: "ansible_system == 'Darwin'"

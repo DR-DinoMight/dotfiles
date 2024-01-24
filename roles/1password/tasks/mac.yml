@@ -2,5 +2,6 @@
 - name: Install 1password on macOS
   ansible.builtin.homebrew:
     name: 1password
-    state: absent
+    state: latest
+  ignore_errors: True
   when: ansible_system == 'Darwin'

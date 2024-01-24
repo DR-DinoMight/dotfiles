@@ -2,4 +2,5 @@
 - name: "Spotify | install"
   homebrew:
     name: spotify
-    state: absent
+    state: latest
+  ignore_errors: True
