@@ -32,7 +32,7 @@
 
 - name: "Zsh | Set Zsh as default shell on Ubuntu"
   ansible.builtin.command:
-    cmd: "chsh -s /usr/bin/zsh {{ host_user }}"
+    cmd: "chsh -s /bin/zsh {{ host_user }}"
   become: true
 
 - name: "Zsh | Copy .zshrc"
