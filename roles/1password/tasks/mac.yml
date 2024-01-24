@@ -1,9 +1,4 @@
 ---
-- name: "1Password | Install 1Password"
-  homebrew:
-    name: 1password
-    state: present
-
 - name: "1Password | Install 1Password CLI"
   homebrew:
     name: 1password-cli
