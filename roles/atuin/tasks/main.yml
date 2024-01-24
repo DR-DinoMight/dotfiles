@@ -8,6 +8,9 @@
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/atuinsh/atuin/main/install.sh
     dest: /tmp/install.sh
+    
+- name: Changing perm of "/tmp/install.sh", adding "u+x"
+  file: dest=/tmp/install.sh mode=u+x
 
 - name: Install Atuin using install.sh script
   ansible.builtin.shell:
