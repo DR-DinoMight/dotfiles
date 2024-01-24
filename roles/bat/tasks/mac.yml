@@ -3,4 +3,3 @@
   homebrew:
     name: bat
     state: present
-  become: true

@@ -3,4 +3,3 @@
   homebrew:
     name: discord
     state: present
-  become: true

@@ -1,6 +1,6 @@
 ---
-- name: Install 1password on macOS
+- name: Install K8s on macOS
   ansible.builtin.homebrew:
-    name: 1password
+    name: kubernetes-cli
     state: absent
   when: ansible_system == 'Darwin'

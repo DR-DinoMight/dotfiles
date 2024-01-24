@@ -2,5 +2,4 @@
 - name: "zoxide | install"
   homebrew:
     name: zoxide
-    state: present
-  become: true
+    state: absent

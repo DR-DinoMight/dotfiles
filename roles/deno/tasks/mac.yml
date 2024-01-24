@@ -3,4 +3,3 @@
   homebrew:
     name: deno
     state: present
-  become: true

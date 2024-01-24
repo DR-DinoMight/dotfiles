@@ -5,6 +5,7 @@
       - git
     state: latest
   become: true
+  when: ansible_os_family == 'Debian'
 
 - name: "Git | Set diff.colorMoved"
   community.general.git_config:
