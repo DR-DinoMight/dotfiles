@@ -11,5 +11,5 @@
 
 - name: "Zellij | Build and Install"
   ansible.builtin.shell:
-    cmd: "cd /{{ ansible_user_dir }}/zellij && cargo build --release && ln -s /{{ ansible_user_dir }}/zellij/target/release/zellij /usr/local/bin/zellij"
+    cmd: "cd /{{ ansible_user_dir }}/zellij && cargo build --release && ln -s /{{ ansible_user_dir }}/zellij/target/release/zellij /usr/bin/zellij"
   become: true
