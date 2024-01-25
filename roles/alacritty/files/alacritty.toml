@@ -1,21 +1,25 @@
 live_config_reload = true
+
 [scrolling]
 history = 100000
 
+[font]
+size = 14.0
+
 [font.normal]
-family = "BerkeleyMono Nerd Font"
+family = "Monaspace Krypton"
 style = "Regular"
 
 [font.bold]
-family = "BerkeleyMono Nerd Font"
+family = "Monaspace Krypton"
 style = "Bold"
 
 [font.italic]
-family = "BerkeleyMono Nerd Font"
+family = "Monaspace Krypton"
 style = "Italic"
 
 [font.bold_italic]
-family = "BerkeleyMono Nerd Font"
+family = "Monaspace Krypton"
 style = "Bold Italic"
 
 [selection]
@@ -25,7 +29,7 @@ save_to_clipboard = true
 [colors.normal]
 black = "0x282c34"
 blue = "0x51afef"
-cyan = "0x46d9ff"S
+cyan = "0x46d9ff"
 green = "0x98be65"
 magenta = "0xc678dd"
 red = "0xff6c6b"

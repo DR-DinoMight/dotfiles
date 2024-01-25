@@ -1,12 +1,13 @@
 ---
 
-- name: "Fonts | Clone Powerline Fonts"
+- name: "Fonts | Clone MonaSpace Fonts"
   ansible.builtin.git:
-    repo: https://github.com/powerline/fonts.git
-    dest: "{{ ansible_env.HOME }}/powerline-fonts"
-  become: true
+    repo: https://github.com/githubnext/monaspace.git
+    dest: "{{ ansible_env.HOME }}/monaspace-fonts"
 
-- name: "Fonts | Install Powerline Fonts"
+- name: Changing perm of "/tmp/install.sh", adding "u+x"
+  file: dest={{ ansible_env.HOME }}/monaspace-fonts/util/install_macos.sh mode=u+x
+
+- name: "Fonts | Install MonaSpace Fonts"
   ansible.builtin.shell:
-    cmd: "{{ ansible_env.HOME }}/powerline-fonts/install.sh"
-  become: true
+    cmd: "{{ ansible_env.HOME }}/monaspace-fonts/util/install_macos.sh"

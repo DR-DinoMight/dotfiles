@@ -32,11 +32,12 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
-eval "$(zellij setup --generate-auto-start zsh)"
+# eval "$(zellij setup --generate-auto-start zsh)"
 
 alias ct='bat --paging=never'
 alias dotfiles="$HOME/.dotfiles/bin/dotfiles"
 alias gbc="better-commits"
+
 eval "$(atuin init zsh)"
 eval "$(op completion zsh)"; compdef _op op
 

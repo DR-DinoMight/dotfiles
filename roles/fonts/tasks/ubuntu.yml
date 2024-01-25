@@ -1,7 +1,12 @@
 ---
-- name: "Fonts | Install"
-  ansible.builtin.apt:
-    name:
-      - fonts-powerline
-    state: present
+
+- name: "Fonts | Clone MonaSpace Fonts"
+  ansible.builtin.git:
+    repo: https://github.com/githubnext/monaspace.git
+    dest: "{{ ansible_env.HOME }}/monaspace-fonts"
+  become: true
+
+- name: "Fonts | Install MonaSpace Fonts"
+  ansible.builtin.shell:
+    cmd: "{{ ansible_env.HOME }}/monaspace-fonts/util/install_linux.sh"
   become: true
