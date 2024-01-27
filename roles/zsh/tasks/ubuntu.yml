@@ -27,10 +27,12 @@
     dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 
 - name: Zsh | Clone zsh-artisan repo
+  ansible.builtin.git:
     repo: https://github.com/jessarcher/zsh-artisan.git
     dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/zsh-artisan"
 
 - name: Zsh | Clone zsh-sail repo
+  ansible.builtin.git:
     repo: https://github.com/ariaieboy/laravel-sail
     dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/laravel-sail"
 
