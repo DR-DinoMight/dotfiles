@@ -26,6 +26,14 @@
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 
+- name: Zsh | Clone zsh-artisan repo
+    repo: https://github.com/jessarcher/zsh-artisan.git
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/zsh-artisan"
+
+- name: Zsh | Clone zsh-sail repo
+    repo: https://github.com/ariaieboy/laravel-sail
+    dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/laravel-sail"
+
 - name: Zsh | Clone CD-LS repo
   ansible.builtin.git:
     repo: https://github.com/zshzoo/cd-ls
