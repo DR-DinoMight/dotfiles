@@ -47,3 +47,10 @@ export PATH="/opt/homebrew/opt/ansible@8/bin:$PATH"
 
 
 export ARTISAN_OPEN_ON_MAKE_EDITOR=code
+
+
+
+#sail AlIASES
+alias smig="sail artisan migrate"
+alias sseed="sail artisan db:seed"
+alias sart="sail artisan"
