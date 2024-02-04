@@ -1,2 +1,14 @@
 ---
-
+- name: "System | Update Brew"
+  community.general.homebrew:
+    update_homebrew: true
+    upgrade_all: true
+- name: "System | Copy enable_touch_id.sh to User"
+  ansible.builtin.copy:
+    src: "enable_touch_id.sh"
+    dest: "{{ ansible_user_dir }}/enable_touch_id.sh"
+    mode: "0755"
+    become: yes
+- name: "System | Enable Touch ID for sudo"
+  become: yes
+  shell: "{{ ansible_user_dir }}/enable_touch_id.sh"
