@@ -48,7 +48,8 @@ export PATH="/opt/homebrew/opt/ansible@8/bin:$PATH"
 
 export ARTISAN_OPEN_ON_MAKE_EDITOR=code
 
-
+compdef _doctl doctl
+autoload -U +X compinit; compinit
 
 #sail AlIASES
 alias smig="sail artisan migrate"
