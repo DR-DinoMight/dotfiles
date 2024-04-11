@@ -27,7 +27,7 @@
     value: main
 
 
-- name: "Git | Set user.email"
+- name: "Git | Set user.email Personal"
   community.general.git_config:
     name: user.email
     scope: global
