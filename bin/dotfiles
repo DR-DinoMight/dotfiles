@@ -49,14 +49,14 @@ function _cmd {
     if ! [[ -f $DOTFILES_LOG ]]; then
         touch $DOTFILES_LOG
     fi
-    > $DOTFILES_LOG
-    if eval "$1" 1> /dev/null 2> $DOTFILES_LOG; then
+    >$DOTFILES_LOG
+    if eval "$1" 1>/dev/null 2>$DOTFILES_LOG; then
         return 0
     fi
     printf "${OVERWRITE}${LRED} [X]  ${TASK}${LRED}\n"
     while read line; do
         printf "      ${line}\n"
-    done < $DOTFILES_LOG
+    done <$DOTFILES_LOG
     printf "\n"
     rm $DOTFILES_LOG
     exit 1
@@ -106,9 +106,17 @@ if ! command -v pip3 &>/dev/null; then
 fi
 
 # Check if pip module watchdog is installed
-if ! pip3 list | grep watchdog &>/dev/null; then
-    _task "Installing Python3 Watchdog"
-    _cmd "python -m pip install watchdog"
+
+if [[ "$(uname)" == "Darwin" ]]; then
+    if ! pipx list | grep "watchdog" &>/dev/null; then
+        _task "Installing Python3 Watchdog"
+        _cmd "brew install watchdog"
+    fi
+else
+    if ! pip3 list | grep "watchdog" &>/dev/null; then
+        _task "Installing Python3 Watchdog"
+        _cmd "python -m pip install watchdog"
+    fi
 fi
 
 # Generate SSH keys
@@ -129,20 +137,20 @@ else
     _cmd "git -C $DOTFILES_DIR pull"
 fi
 
-pushd "$DOTFILES_DIR" 2>&1 > /dev/null
+pushd "$DOTFILES_DIR" 2>&1 >/dev/null
 _task "Updating Galaxy"
 _cmd "ansible-galaxy install -r requirements.yml"
 
 _task "Running playbook"
 if [[ -f $VAULT_SECRET ]]; then
     _task "Found Vault - $VALUT_SECRET"
-    ansible-playbook --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@"
+    ansible-playbook --vault-password-file $VAULT_SECRET "$DOTFILES_DIR/main.yml" "$@" --ask-become-pass
 else
     _task "No Valut  - $VALUT_SECRET"
-    ansible-playbook "$DOTFILES_DIR/main.yml" "$@"
+    ansible-playbook "$DOTFILES_DIR/main.yml" "$@" --ask-become-pass
 fi
 
-popd 2>&1 > /dev/null
+popd 2>&1 >/dev/null
 
 if ! [[ -f "$IS_FIRST_RUN" ]]; then
     echo -e "${CHECK_MARK} ${GREEN}First run complete!${NC}"

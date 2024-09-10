@@ -147,15 +147,15 @@ keybinds {
     shared_except "locked" {
         bind "Ctrl g" { SwitchToMode "Locked"; }
         bind "Ctrl q" { Quit; }
-        bind "Alt n" { NewPane; }
-        bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
-        bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
-        bind "Alt j" "Alt Down" { MoveFocus "Down"; }
-        bind "Alt k" "Alt Up" { MoveFocus "Up"; }
-        bind "Alt =" "Alt +" { Resize "Increase"; }
-        bind "Alt -" { Resize "Decrease"; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
+        bind "Ctrl Shift n" { NewPane; }
+        bind "Ctrol Shift h" "Ctrol Shift Left" { MoveFocusOrTab "Left"; }
+        bind "Ctrol Shift l" "Ctrol Shift Right" { MoveFocusOrTab "Right"; }
+        bind "Ctrol Shift j" "Ctrol Shift Down" { MoveFocus "Down"; }
+        bind "Ctrol Shift k" "Ctrol Shift Up" { MoveFocus "Up"; }
+        bind "Ctrol Shift =" "Ctrol Shift +" { Resize "Increase"; }
+        bind "Ctrol Shift -" { Resize "Decrease"; }
+        bind "Ctrol Shift [" { PreviousSwapLayout; }
+        bind "Ctrol Shift ]" { NextSwapLayout; }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
@@ -251,7 +251,7 @@ plugins {
 
 // Choose the theme that is specified in the themes section.
 // Default: default
-// 
+//
 theme: "doom"
 
 // The name of the default layout to load on startup
