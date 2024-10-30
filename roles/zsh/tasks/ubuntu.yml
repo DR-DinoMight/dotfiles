@@ -78,3 +78,9 @@
     mode: "0600"
     state: present
   when: windows_user
+
+- name: "zsh | Copy Git Prune Script to {{ ansible_user_dir }}/local/bin"
+  ansible.builtin.copy:
+    src: "gprune.sh"
+    dest: "{{ ansible_user_dir }}/.local/bin/gprune"
+    mode: "0755"
