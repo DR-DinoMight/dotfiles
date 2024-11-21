@@ -40,10 +40,10 @@
     repo: https://github.com/zshzoo/cd-ls
     dest: "{{ ansible_user_dir }}/.oh-my-zsh/custom/plugins/cd-ls"
 
-- name: "Zsh | Set Zsh as default shell on Ubuntu"
-  ansible.builtin.command:
-    cmd: "chsh -s /bin/zsh {{ host_user }}"
-  become: true
+# - name: "Zsh | Set Zsh as default shell on Ubuntu"
+#   ansible.builtin.command:
+#     cmd: "chsh -s /bin/zsh {{ host_user }}"
+#   become: true
 
 - name: "Zsh | Copy .zshrc"
   ansible.builtin.copy:
