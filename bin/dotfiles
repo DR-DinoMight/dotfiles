@@ -100,6 +100,7 @@ if ! command -v pip3 &>/dev/null; then
     _task "Installing Python3 Pip"
     if [[ "$(uname)" == "Darwin" ]]; then
         _cmd "brew install python"
+        _cmd "brew install pipx"
     elif [[ "$(uname)" == "Linux" ]]; then
         _cmd "sudo apt-get install -y python3-pip"
     fi
