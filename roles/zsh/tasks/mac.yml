@@ -52,21 +52,21 @@
     mode: "0644"
 
 
-- name: "zsh | Copy Private Files openai.apikey"
-  ansible.builtin.lineinfile:
-    name: "~/.openai.apikey"
-    line: "{{ OPENAI_KEY }}"
-    create: true
-    mode: "0600"
-    state: present
+# - name: "zsh | Copy Private Files openai.apikey"
+#   ansible.builtin.lineinfile:
+#     name: "~/.openai.apikey"
+#     line: "{{ OPENAI_KEY }}"
+#     create: true
+#     mode: "0600"
+#     state: present
 
-- name: "zsh | Copy Private Files zshrc"
-  ansible.builtin.lineinfile:
-    name: "~/.zshrc"
-    line: "export OPENAI_API_KEY='{{ OPENAI_API_KEY }}'"
-    create: true
-    mode: "0600"
-    state: present
+# - name: "zsh | Copy Private Files zshrc"
+#   ansible.builtin.lineinfile:
+#     name: "~/.zshrc"
+#     line: "export OPENAI_API_KEY='{{ OPENAI_API_KEY }}'"
+#     create: true
+#     mode: "0600"
+#     state: present
 
 - name: "zsh | Copy Git Prune Script to {{ ansible_user_dir }}/local/bin"
   ansible.builtin.copy:
