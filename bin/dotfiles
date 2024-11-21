@@ -111,7 +111,7 @@ fi
 if [[ "$(uname)" == "Darwin" ]]; then
     if ! pipx list | grep "watchdog" &>/dev/null; then
         _task "Installing Python3 Watchdog"
-        _cmd "brew install watchdog"
+        _cmd "pipx install watchdog"
     fi
 else
     if ! pip3 list | grep "watchdog" &>/dev/null; then
