@@ -40,7 +40,7 @@ default_roles:
   - heidisql
   - ray
   - bruno
-  - vercel
+  # - vercel
   - netlify
   - railway
   - raycast
