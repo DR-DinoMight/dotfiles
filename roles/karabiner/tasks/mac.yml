@@ -1,0 +1,19 @@
+---
+- name: Karabiner | Install K9s on macOS
+  community.general.homebrew_cask:
+    name: karabiner-elements
+    state: present
+  ignore_errors: True
+  when: ansible_system == 'Darwin'
+
+- name: "Karabiner | Ensure config directory exists"
+  ansible.builtin.file:
+    path: "{{ ansible_user_dir }}/.config/karabiner"
+    state: directory
+    mode: 0755
+
+- name: "Karabiner | Copy config"
+  ansible.builtin.copy:
+    dest: "{{ ansible_user_dir }}/.config/larabiner/karabiner.json"
+    src: "karabiner.json"
+    mode: 0644
