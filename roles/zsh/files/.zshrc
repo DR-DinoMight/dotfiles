@@ -79,5 +79,8 @@ alias sseed="sail artisan db:seed"
 alias sart="sail artisan"
 alias ar="artisan"
 
+#cursor Aliases
+alias c="cursor"
+
 #fzf
 source <(fzf --zsh)
